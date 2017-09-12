@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
+
 
 // URL Constants
 let auth_one = "simplyrets"
