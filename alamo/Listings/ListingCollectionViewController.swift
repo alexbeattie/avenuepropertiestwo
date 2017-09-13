@@ -8,35 +8,98 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
+import CoreLocation
+import MapKit
 
 private let reuseIdentifier = "Cell"
 
 class ListingCollectionViewController: UICollectionViewController {
- 
+    
     var listings = [Listing]()
+    var listingDataModel = [Listing]()
     
     @IBOutlet weak var listingCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let width = collectionView!.frame.width / 3
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
         
-        AuthService.instance.findAllListings { (success) in
+        findAllListings { (success) in
             
-        
+            
+            
         }
         
-        
+//        updateListings(json: JSON)
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  
+    var listingId: String?
+    var remarks: String?
+    var listPrice:Int?
+    
+    func findAllListings(completion: @escaping CompletionHandler) {
+        Alamofire.request("\(AUTH_CODES)\(BASE_URL)\(ENDPOINT)").validate(contentType: ["application/json"]).responseJSON { response in
+            if response.result.error == nil {
+                
+                guard let data = response.data else { return }
+                
+                do {
+                    
+                    self.listings = try JSONDecoder().decode([Listing].self, from: data)
+//                    let listingJSON : JSON  = JSON(response.result.value!)
+//                    print(listingJSON)
+//                    if let json = response.result.value as? Dictionary<String, AnyObject> {
+//                        print(json)
+//                        let alistings = json["agent"] as? [String: Any]
+//                        print("\(alistings)")
+
+                    if let json = response.result.value  {
+//                        print("JSON: \(json)")
+                        for listing in self.listings {
+                            
+                            
+                            let theListing = Listing(listingId: self.listingId, remarks: nil, listPrice: self.listPrice)
+                            print(listing)
+                            
+                        }
+                        
+                    }
+                    
+                    
+                } catch let error {
+                    
+                    debugPrint(error as Any)
+                }
+                //                print(self.listings)
+                
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+    
+ 
+
+    func updateListings(json: JSON) {
+//        let result = response.result
+//        if let dict = result.value as? Dictionary<String, AnyObject> {
+//        if let theRemark = dict["remarks"] as? String {
+//            let theListing = Listing(remarks: theRemark)
+//            self.listingDataModel.append(theListing)
+//            print("The remark is: \(theRemark)")
+//
+//            }
+//        }
     }
 
-    /*
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -44,7 +107,7 @@ class ListingCollectionViewController: UICollectionViewController {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
+//    */
 
     // MARK: UICollectionViewDataSource
 
@@ -53,7 +116,7 @@ class ListingCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return listings.count
+        return listingDataModel.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

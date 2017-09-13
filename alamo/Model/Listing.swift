@@ -7,154 +7,179 @@
 //
 
 import Foundation
-import Alamofire
-import SwiftyJSON
-import UIKit
 
-//struct PhotosURLS : Decodable {
+
+//
+//struct Listing : Decodable {
+////    var listingId: String?
+//    var remarks: String?
+////    var listPrice: Int?
+////    var mlsId: Int?
+////    var photos: [String]?
+////    var geo: Geo
+////    var mls: Mls
+////    var agent: Agent
+////    var address: Address
+////    var property: Property
+////    var office: Office
+////    var disclaimer: String?
+////    var agreement: String?
+////    var listDate: String?
+////    var school: School
+////    var coAgent: Coagent
+////    var virtualTourUrl: String?
+//
+//}
+
+struct Listing : Codable {
+    var listingId: String?
+    var remarks: String?
+    var listPrice: Int?
+//    var mlsId: Int?
+//    var photos: [String]?
+//    var geo: Geo
+//    var mls: Mls
+//    var agent: Agent
+//    var address: Address
+//    var property: Property
+//    var office: Office
+//    var disclaimer: String?
+//    var agreement: String?
+//    var listDate: String?
+//    var school: School
+//    var coAgent: Coagent
+//    var virtualTourUrl: String?
+    
+}
+
+
+
+
+//struct Listing : Codable {
 //    var listingId: String?
 //    var remarks: String?
 //    var listPrice: Int?
 //    var mlsId: Int?
-//    var photos: [Listing]
+//    var photos: [String]?
+//    var geo: Geo
+//    var mls: Mls
+//    var agent: Agent
+//    var address: Address
+//    var property: Property
+//    var office: Office
+//    var disclaimer: String?
+//    var agreement: String?
+//    var listDate: String?
+//    var school: School
+//    var coAgent: Coagent
+//    var virtualTourUrl: String?
+//
 //}
 
-//struct GeoPoints : Decodable {
-//
-//    let county: String?
-//    let lat: Float?
-//    let lng: Float?
-//    let marketArea: String?
-//    let directions: String
-//
-//}
-
-
-struct Listing : Decodable {
-    var listingId: String?
-    var remarks: String?
-    var listPrice: Int?
-    var mlsId: Int?
-    let photos: [String]?
-    let geo: Geo
-    let mls: Mls
-    let agent: Agent
-    let address: Address
-    let property: Property
-    let office: Office
-    let disclaimer: String?
-    let agreement: String?
-    let listDate: String?
-    let school: School
-    let coAgent: Coagent
-    let virtualTourUrl: String?
-
+struct Geo: Codable {
+    var county: String?
+    var lat: Float?
+    var lng: Float?
+    var marketArea: String?
+    var directions: String?
+}
+struct Mls: Codable {
+    var status: String?
+    var area: String?
+    var daysOnMarket: Int?
+    var originatingSystemName: String?
+    var statusText:String
+}
+struct Agent: Codable {
+    var lastName:String?
+    var contact:String?
+    var firstName: String?
+    var id: String?
 }
 
-struct Geo: Decodable {
-    let county: String?
-    let lat: Float?
-    let lng: Float?
-    let marketArea: String?
-    let directions: String?
-}
-struct Mls: Decodable {
-    let status: String?
-    let area: String?
-    let daysOnMarket: Int?
-    let originatingSystemName: String?
-    let statusText:String
-}
-struct Agent: Decodable {
-    let lastName:String?
-    let contact:String?
-    let firstName: String?
-    let id: String?
-}
-
-struct Address: Decodable {
+struct Address: Codable {
     
-    let crossStreet: String?
-    let state: String?
-    let country: String?
-    let postalCode: String?
-    let streetName: String?
-    let streetNumberText: String?
-    let city: String?
-    let streetNumber: Int?
-    let full: String?
-    let unit: String?
+    var crossStreet: String?
+    var state: String?
+    var country: String?
+    var postalCode: String?
+    var streetName: String?
+    var streetNumberText: String?
+    var city: String?
+    var streetNumber: Int?
+    var full: String?
+    var unit: String?
 }
 
-struct Property: Decodable {
+struct Property: Codable {
     
-    let roof: String?
-    let cooling: String?
-    let style: String?
-    let bathsFull: Int?
-    let bathsHalf: Int?
-    let stories: Int?
-    let fireplaces: Int?
-    let flooring: String?
-    let heating: String?
-    let bathrooms: String?
-    let foundation: String?
-    let laundryFeatures: String?
-    let occupantName: String?
-    let lotDescription: String?
-    let pool: String?
-    let subType: String?
-    let bedrooms: Int?
-    let interiorFeatures: String?
-    let lotSize: String?
-    let areaSource: String?
-    let maintenanceExpense: String?
-    let additionalRooms: String?
-    let exteriorFeatures: String?
-    let water: String?
-    let view: String?
-    let lotSizeArea: String?
-    let subdivision: String?
-    let construction: String?
-    let parking: Parking
-    let lotSizeAreaUnits: String?
-    let type: String?
-    let garageSpaces: Float?
-    let bathsThreeQuarter: String?
-    let accessibility: String?
-    let acres: String?
-    let occupantType: String?
-    let subTypeText: String?
-    let yearBuilt: Int?
+    var roof: String?
+    var cooling: String?
+    var style: String?
+    var bathsFull: Int?
+    var bathsHalf: Int?
+    var stories: Int?
+    var fireplaces: Int?
+    var flooring: String?
+    var heating: String?
+    var bathrooms: String?
+    var foundation: String?
+    var laundryFeatures: String?
+    var occupantName: String?
+    var lotDescription: String?
+    var pool: String?
+    var subType: String?
+    var bedrooms: Int?
+    var interiorFeatures: String?
+    var lotSize: String?
+    var areaSource: String?
+    var maintenanceExpense: String?
+    var additionalRooms: String?
+    var exteriorFeatures: String?
+    var water: String?
+    var view: String?
+    var lotSizeArea: String?
+    var subdivision: String?
+    var construction: String?
+    var parking: Parking
+    var lotSizeAreaUnits: String?
+    var type: String?
+    var garageSpaces: Float?
+    var bathsThreeQuarter: String?
+    var accessibility: String?
+    var acres: String?
+    var occupantType: String?
+    var subTypeText: String?
+    var yearBuilt: Int?
     
 }
 
-struct Parking: Decodable {
-    let leased: String?
-    let spaces: Int?
-    let description: String?
+struct Parking: Codable {
+    var leased: String?
+    var spaces: Int?
+    var description: String?
 }
 
-struct Office: Decodable {
-    let contact: String?
-    let name: String?
-    let servingName: String?
-    let brokerId: String?
+struct Office: Codable {
+    var contact: String?
+    var name: String?
+    var servingName: String?
+    var brokerId: String?
 }
 
-struct School:Decodable {
-    let middleSchool: String?
-    let highSchool: String?
-    let elementarySchool: String?
-    let district: String?
+struct School:Codable {
+    var middleSchool: String?
+    var highSchool: String?
+    var elementarySchool: String?
+    var district: String?
 }
 
 
-struct Coagent: Decodable {
-    let lastName: String?
-    let contact: String?
-    let firstName: String?
-    let id: String?
+struct Coagent: Codable {
+    var lastName: String?
+    var contact: String?
+    var firstName: String?
+    var id: String?
 }
 
 
