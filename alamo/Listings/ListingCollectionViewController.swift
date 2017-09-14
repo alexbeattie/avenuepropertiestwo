@@ -43,7 +43,8 @@ class ListingCollectionViewController: UICollectionViewController {
     var listPrice:Int?
     
     func findAllListings(completion: @escaping CompletionHandler) {
-        Alamofire.request("\(AUTH_CODES)\(BASE_URL)\(ENDPOINT)").validate(contentType: ["application/json"]).responseJSON { response in
+        Alamofire.request("\(LOCAL_URL)").validate(contentType: ["application/json"]).responseJSON { response in
+//        Alamofire.request("\(AUTH_CODES)\(BASE_URL)\(ENDPOINT)").validate(contentType: ["application/json"]).responseJSON { response in
             if response.result.error == nil {
                 
                 guard let data = response.data else { return }

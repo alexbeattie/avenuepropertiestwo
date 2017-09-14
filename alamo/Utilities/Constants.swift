@@ -20,6 +20,7 @@ let ENDPOINT = "properties"
 
 let TOKEN_KEY = "token"
 let URL_GET_PROPERTIES = "\(BASE_URL)properties/"
+let LOCAL_URL = "http://localhost:8888/simplyrets/file.json"
 
 typealias CompletionHandler = (_ Success: Bool) -> ()
 
